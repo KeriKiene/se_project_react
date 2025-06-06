@@ -5,9 +5,9 @@ function ItemModal({ activeModal, onClose, card }) {
     <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
       <div className="modal__content modal__content_type_image">
         <button onClick={onClose} type="button" className="modal__close">
-          {/* <img src="../src/assets/CloseButton.png" alt="CloseButton" /> */}
+          {/* <img src="../vite-project/src/assets/CloseButton.png" alt="CloseButton" /> */}
           <img
-            src="../src/assets/Close-btn.png"
+            src="../vite-project/src/assets/Close-btn.png"
             alt="ItemCardClose"
             className="modal__close-btn"
           />
