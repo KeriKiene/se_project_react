@@ -7,7 +7,7 @@ function ItemModal({ activeModal, onClose, card }) {
         <button onClick={onClose} type="button" className="modal__close">
           {/* <img src="../vite-project/src/assets/CloseButton.png" alt="CloseButton" /> */}
           <img
-            src="../vite-project/src/assets/Close-btn.png"
+            src="../src/assets/Close-btn.png"
             alt="ItemCardClose"
             className="modal__close-btn"
           />
