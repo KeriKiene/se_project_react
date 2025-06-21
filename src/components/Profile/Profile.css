@@ -2,3 +2,10 @@
   display: flex;
   gap: 50px;
 }
+
+/* .profile__clothing-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+} */
