@@ -26,6 +26,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  // const [confirmation, setConfirmation] = useState("");
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -52,6 +53,11 @@ function App() {
     closeActiveModal();
   };
 
+  // const deleteConfirmation = (_id) => {
+  //     setSelectedCard(_id);
+  //    setConfirmation("opened");
+  //   };
+
   const onDelete = (_id) => {
     deleteItems(_id)
       .then(() => {
@@ -76,7 +82,7 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        console.log(data);
+        setClothingItems(data);
       })
       .catch(console.error);
   }, []);
@@ -115,6 +121,7 @@ function App() {
           card={selectedCard}
           onClose={closeActiveModal}
           onDelete={onDelete}
+          //onClick={() => deleteConfirmation(card._id)}
         />
         <Footer />
       </div>
