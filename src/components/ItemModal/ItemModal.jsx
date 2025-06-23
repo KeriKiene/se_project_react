@@ -22,7 +22,6 @@ function ItemModal({ activeModal, onClose, card, onDelete }) {
           <button
             id="id"
             onClick={() => onDelete(card._id)}
-            //onClick={() => deleteConfirmation(card._id)}
             type="button"
             className="delete"
           >
