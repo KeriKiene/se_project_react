@@ -11,7 +11,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { defaultClothingItems } from "../../utils/constants.js";
+// import { defaultClothingItems } from "../../utils/constants.js";
 import { addItems, deleteItems, getItems } from "../../utils/api.js";
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
     condition: "",
     isDay: false,
   });
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -44,13 +44,22 @@ function App() {
     setActiveModal("");
   };
 
-  const handleAddItemModalSubmit = ({ name, imageUrl, weather, addItems }) => {
-    setClothingItems((prevItems) => [
-      { name, link: imageUrl, weather, addItems },
-      ...prevItems,
-    ]);
-    closeActiveModal();
+  const handleAddItemModalSubmit = (itemData) => {
+    addItems(itemData)
+      .then((response) => {
+        setClothingItems((prevItems) => [response, ...prevItems]);
+        closeActiveModal();
+      })
+      .catch(console.error);
   };
+
+  // const handleAddItemModalSubmit = ({ name, imageUrl, weather, addItems }) => {
+  //   setClothingItems((prevItems) => [
+  //     { name, link: imageUrl, weather, addItems },
+  //     ...prevItems,
+  //   ]);
+  //   closeActiveModal();
+  // };
 
   const onDelete = (_id) => {
     deleteItems(_id)
@@ -101,7 +110,13 @@ function App() {
             />
             <Route
               path="/profile"
-              element={<Profile handleCardClick={handleCardClick} />}
+              element={
+                <Profile
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                  onDelete={onDelete}
+                />
+              }
             />
           </Routes>
         </div>
@@ -109,6 +124,7 @@ function App() {
           isOpen={activeModal === `add-garment`}
           onClose={closeActiveModal}
           onAddItemModalSubmit={handleAddItemModalSubmit}
+          onDelete={deleteItems}
         />
         <ItemModal
           activeModal={activeModal}
