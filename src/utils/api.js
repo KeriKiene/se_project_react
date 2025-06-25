@@ -14,17 +14,13 @@ export { getItems };
 
 const POST = "http://localhost:3001/items";
 
-function addItems(name, imageUrl, weather) {
+function addItems(itemData) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      name: name,
-      imageUrl: imageUrl,
-      weather: weather,
-    }),
+    body: JSON.stringify(itemData),
   }).then(checkResponse);
 }
 
