@@ -8,11 +8,9 @@ function checkResponse(res) {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(`Error ${res.status}`);
+  return Promise.reject(`Error: ${res.status}`);
 }
-export { getItems };
-
-const POST = "http://localhost:3001/items";
+export { getItems, checkResponse };
 
 function addItems(itemData) {
   return fetch(`${baseUrl}/items`, {
